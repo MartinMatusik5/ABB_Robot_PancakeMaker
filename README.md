@@ -1,2 +1,2 @@
 # ABB_Robot_PancakeMaker
-*Doplnit  - Aplikace pro chystání palačinek
+An application for preparing pancakes. The robot being used is the CRB 15000 GoFa. The code is written in the RAPID programming language.
