@@ -1,0 +1,113 @@
+MODULE Module_palacinky(SYSMODULE)
+	PERS tooldata EGP_C_64_N := [TRUE,[[0,0,174],[1,0,0,0]],[0.69,[0,0,62.5],[1,0,0,0],0,0,0]];
+	TASK PERS wobjdata wobjPalacinky := [FALSE,TRUE,"",[[0,0,0],[1,0,0,0]],[[0,0,0],[1,0,0,0]]];
+	CONST robtarget P_kalisek := [[831.93,320.9,160.94],[0.208216,-0.688844,-0.0285081,-0.693778],[0,-2,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget p_palacinkovac := [[498.16,-292.79,390.44],[0.337407,0.399707,-0.574169,0.629858],[0,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    PERS robtarget pPalOtoc := [[409.813,-304.082,345.129],[0.0785053,-0.00437837,0.699587,-0.710208],[0,-2,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget pPalacinkaHome := [[-1.52,-162.87,325.65],[0.0137845,0.715121,0.698865,-0.000580113],[-2,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	
+	CONST robtarget pRoztirani := [[350,-170,294.8],[0.00,0.480114,0.9,0],[-1,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    VAR robtarget pRoztiraniouska := [[317.86,-130.66,300.45],[0.00,0.480114,0.9,0],[-1,-1,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	CONST robtarget pRoztiratko := [[820.57,98.61,58.53],[0.00547077,0.81689,-0.0468577,0.574861],[0,-2,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	PERS robtarget pRoztirani2 := [[422.355,-278.009,294.795],[8.54425E-07,0.290726,-0.956806,-4.1086E-06],[-1,0,-2,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+	PERS robtarget pObracecka := [[768.2,-43.1814,61.4638],[0.269263,0.716568,-0.315192,0.560965],[0,-2,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    
+    PERS robtarget Location2:=[[388.833, 440.008, 274.234], [0.266532, -0.0823088, 0.793799, -0.540434], [0, -1, 0, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    PERS robtarget pObraceni1:=[[383, 175.408, 310.526], [0.287087, 0.66038, -0.626598, 0.298085], [0, -1, -1, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    PERS robtarget pObraceni2:=[[393.03,-39.61,297.19],[0.295261,0.636063,-0.64254,0.308848],[0,-1,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    PERS robtarget pObraceni3:=[[500, 50.5984, 300.77], [0.34224, 0.620882, -0.575056, 0.408274], [0, -1, -1, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    PERS robtarget pObraceni_G:=[[445, 38.5454, 500.817], [0.186815, 0.160464, 0.781172, -0.573691], [0, -1, 0, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    PERS robtarget pTalir:=[[364.734, 432.185, 207.277], [0.283508, 0.692362, -0.469861, 0.468496], [0, -1, -1, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    PERS robtarget pTalir_G:=[[388.803, 440.034, 274.225], [0.266548, -0.0823392, 0.793794, -0.540429], [0, -1, 0, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    PERS robtarget pVzduch:=[[572.968, 161.425, 440.426], [0.00703113, 0.605783, -0.517896, 0.603954], [0, -1, -1, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    
+    CONST robtarget pWZpalacinkovac:=[[374.852418899536, -202.627643942833, 200.226201415062], [0.0148310866206884, 0.276738852262497, 0.960805654525757, 0.00693910242989659], [-1, 0, -1, 0], [9000000000, 9000000000, 9000000000, 9000000000, 9000000000, 9000000000]];
+    VAR shapedata sh_P;
+    VAR wztemporary wzt_P;
+PROC Nalevani()
+	SCHUNK_Init ;
+!MoveJ pPalacinkaHome, v400, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+!TapToStart ;
+MoveL RelTool(P_kalisek,0,0,-200), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL P_kalisek, v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+WaitTime 0.5;
+SCHUNK_Gripper_Grip ;
+MoveL offs(P_kalisek,0,0,100), v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL p_palacinkovac, v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL Reltool(p_palacinkovac,0,100,0\Rz:=69), v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+pPalOtoc:=CRobT();
+moveC RelTool(pPalOtoc,-60,0,-60\Rz:=5), RelTool(pPalOtoc,0,0,-120\Rz:=10), v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+moveC RelTool(pPalOtoc,60,-20,-60\Rx:=-30\Rz:=50), RelTool(pPalOtoc,0,0,0\Rz:=50), v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+WaitTime 2;
+MoveL Reltool(p_palacinkovac,10,130,0\Rz:=120), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL Reltool(p_palacinkovac,40,130,0\Rz:=120), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL Reltool(p_palacinkovac,10,130,0\Rz:=120), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL Reltool(p_palacinkovac,40,130,0\Rz:=0), v20, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL offs(P_kalisek,0,0,20), v400, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL P_kalisek, v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+SCHUNK_Gripper_Release ;
+WaitTime 0.5;
+MoveL RelTool(P_kalisek,0,0,-200), v400, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+
+	ENDPROC
+    
+PROC Roztirani()
+     SCHUNK_Init;
+	MoveL RelTool(pRoztiratko,0,0,-50), v400, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;	
+MoveL pRoztiratko, v100, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;	
+WaitTime 0.5;	
+SCHUNK_Gripper_Grip ;
+MoveL RelTool(pRoztiratko,80,0,0), v100, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveJ pVzduch, v400, z100, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveJ offs(pRoztirani,0,0,100), v400, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL RelTool(pRoztirani,0,0,0,\Rx:=0\Ry:=0\Rz:=90), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveC RelTool(pRoztirani,-65,-65,0), RelTool(pRoztirani,-130,0,0\Rz:=-90), v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+pRoztirani2:=CRobT();
+MoveC RelTool(pRoztirani2,-65,65,0,\Rz:=-89.9), RelTool(pRoztirani2,0,130,0,\Rz:=-179), v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveJ offs(pRoztirani,0,0,100), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveJ pVzduch, v400, z100, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveJ RelTool(pRoztiratko,100,0,0), v400, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pRoztiratko, v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+WaitTime 0.5;
+SCHUNK_Gripper_Release ;
+MoveL RelTool(pRoztiratko,100,0,0), v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+ENDPROC
+
+PROC Obraceni()
+	SCHUNK_Init ;
+SCHUNK_Gripper_Release ;
+MoveJ Reltool(pObracecka,0,0,-150), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pObracecka, v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+WaitTime 0.5;
+SCHUNK_Gripper_Grip ;
+MoveL Reltool(pObracecka,150,0,0), v200, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL Reltool(pObraceni1,0,0,-100), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+TapToStart ;
+MoveL pObraceni1, v200, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pObraceni2, v600, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL reltool (pObraceni2,0,0,0\Ry:=20), v100, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL reltool (pObraceni3,0,0,0\Ry:=20), v100, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pObraceni_G, v500, z1, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL Reltool(pObraceni1,0,0,-100), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+TapToStart ;
+MoveL pObraceni1, v200, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pObraceni2, v600, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL reltool (pObraceni2,0,0,0\Ry:=20), v100, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL offs(pObraceni3,-110,0,0), v100, z10, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL offs(pTalir,0,0,200), v200, z20, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pTalir, v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pTalir_G, v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL Reltool(pObracecka,150,0,0), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveL pObracecka, v50, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+WaitTime 0.5;
+SCHUNK_Gripper_Release ;
+MoveJ Reltool(pObracecka,0,0,-150), v200, fine, SCHUNKGripperTool\WObj:=wobjPalacinky;
+MoveJ pVzduch, v200, z50, SCHUNKGripperTool\WObj:=wobjPalacinky;
+ENDPROC
+
+PROC InitWZ()
+    WZFree wzt_P;
+	WZCylDef\Inside,sh_P,pWZpalacinkovac.trans,240,-300;
+    WZLimSup\Temp,wzt_P,sh_P;
+ENDPROC
+ENDMODULE
